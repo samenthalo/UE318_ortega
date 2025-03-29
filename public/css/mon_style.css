@@ -1,0 +1,46 @@
+html, body {
+height: 100%;
+}
+body {
+margin: 10;
+padding: 10;
+width: 90%;
+display:compact;
+font-weight: 100;
+font-family: 'Arial';
+font-size: 14pt;
+}
+.container {
+text-align:left;
+display: table-cell;
+vertical-align: middle;
+}
+.contenu {
+text-align:left;
+display: inline-block;
+}
+.pied_page {
+text-align:right;
+display:compact;
+font-family: 'Arial';
+font-size: 11pt;
+color: red;
+}
+.titre_contenu {
+text-align:center;
+font-size: 24pt;
+text-height:max-size;
+color:green;
+}
+.h1 {
+text-align:center;
+font-size: 18pt;
+font-family:'Lucida Console';
+color:tomato;
+}
+.h2 {
+text-align:center;
+font-size: 16pt;
+font-family:'Impact';
+color:coral;
+}
