@@ -1,19 +1,18 @@
 <?php
 
+// Biographie.php
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Biographie extends Model
 {
-    use HasFactory;
+    protected $fillable = ['membre_id', 'biographie'];
 
-    protected $fillable = ['user_id', 'description'];
-
-    public function user()
+    // Relation inverse avec Membre
+    public function membre()
     {
-        return $this->belongsTo(User::class); // ou Membre::class si c'est ton modèle
+        return $this->belongsTo(Membre::class);
     }
 }
 

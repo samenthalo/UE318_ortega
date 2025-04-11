@@ -5,6 +5,8 @@ use App\Http\Controllers\MonControleur;
 use App\Http\Controllers\ControleurMembres;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BiographieController;
+use App\Http\Controllers\AdminController;
+
 
 // Page d'accueil
 // Redirection vers la page /home si la page d'accueil est visitée
@@ -68,4 +70,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //Biographie
 Route::put('/membres/{id}/biographie', [MembreController::class, 'updateBiographie'])->name('biographie.update');
+
+// Route pour le tableau de bord de l'administrateur (sans middleware)
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+// Routes pour approuver ou rejeter un utilisateur
+// Route pour approuver un utilisateur
+Route::put('/admin/approve/{id}', [AdminController::class, 'approve'])->name('admin.approve');
+
+// Route pour refuser un utilisateur
+Route::put('/admin/reject/{id}', [AdminController::class, 'reject'])->name('admin.reject');
+
+
+
 

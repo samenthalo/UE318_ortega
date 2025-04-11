@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -37,4 +39,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
+
+    /**
+     * Override the authenticated method to check user status
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        // Vérifie si l'utilisateur est approuvé
+        if ($user->status !== 'approved') {
+            Auth::logout(); // Déconnecte l'utilisateur immédiatement
+            return redirect('/login')->with('error', 'Votre inscription n\'a pas encore été approuvée. Veuillez réessayer plus tard.');
+        }
+
+        // Si l'utilisateur est approuvé, il est redirigé normalement
+        return redirect()->intended($this->redirectPath());
+    }
 }
+
